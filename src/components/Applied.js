@@ -20,21 +20,30 @@ class Applied extends Component {
     const { data } = this.props;
     const aForm = <AppForm />;
     const actions = ['Applied','Communications','Denied','Interview','Networking','Offer'];
+    let actionButton;
+    var newForm = this.state.showComponent ? <AppForm /> : null;
+
     const listActions = actions.map((action, i) => {
       console.log('list each one and I', action);
       console.log('list I', i);
-      <RaisedButton onClick={this.handleClick} label={action} />
-    })
-    var newForm = this.state.showComponent ? <AppForm /> : null;
-
     return (
-       <li id="1" >
-       <RaisedButton onClick={this.handleClick} label="Applied" />
+        <li id={i}>
+        <RaisedButton onClick={this.handleClick} label={action} />
+        </li>
+      )
+    // return [actionButton, i];
+    })
+    console.log('find I', { listActions });
+    return (
 
-       {newForm}
-      </li>
-  )}
+     )
+  }
 }
 
 // module.exports =  AppForm;
 export default Applied;
+// <li id="1" >
+// <RaisedButton onClick={this.handleClick} label="Applied" />
+//
+// {newForm}
+// </li>
