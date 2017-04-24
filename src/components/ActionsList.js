@@ -30,7 +30,6 @@ class ActionsList extends Component {
   // }
   render(i) {
     const { data } = this.props;
-    const { active } = this.props;
 
     var actions = ['Applied','Communications','Denied','Interview','Networking','Offer'];
     var Forms = [
@@ -41,10 +40,8 @@ class ActionsList extends Component {
       <FormOffer />,
       <NetworkForm />
     ];
-    var listForms;
     var listActions;
     let NewForm;
-    let Form;
     let matchForm;
     let DComp;
 
