@@ -9,11 +9,6 @@ import NetworkForm from './forms/NetworkForm';
 import _ from 'lodash';
 
 class ActionsList extends Component {
-  // getInitialState() {
-  //   return {
-  //     showComponent: false,
-  //   };
-  // }
   constructor(props, value) {
     super(props);
     this.state = {
@@ -22,25 +17,25 @@ class ActionsList extends Component {
     };
   }
   handleClick(value, prevState) {
-    let preValue = this.state.value;
-    console.log('prevalue and value check', preValue, value);
+    let preValue = JSON.stringify(this.state.value);
+        preValue = preValue.replace(/"/g,"");
+
     if (preValue === '{}' || value === preValue ) {
         this.setState(prevState => ({
           showComponent: !prevState.showComponent,
           value: value
         }));
-    } else if(value !== preValue) {
+    } else if(value !== preValue && !this.state.showComponent) {
+      this.setState(prevState => ({
+        showComponent: !prevState.showComponent,
+        value: value
+      }));
+    } else {
       this.setState(prevState => ({
         value: value
       }));
     }
   }
-  // changeValue(value, i) {
-  //   console.log("changeValue ", value, i);
-  //   this.setState({
-  //     value: value
-  //   })
-  // }
   render(i) {
     const { data } = this.props;
 
@@ -50,8 +45,8 @@ class ActionsList extends Component {
       <Comm />,
       <DeniedForm />,
       <FormInt />,
-      <FormOffer />,
-      <NetworkForm />
+      <NetworkForm />,
+      <FormOffer />
     ];
     var listActions;
     let NewForm;
@@ -61,15 +56,7 @@ class ActionsList extends Component {
     matchForm = _.indexOf(actions, this.state.value, 0);
     DComp = Forms[matchForm];
 
-
-      // let preValue = JSON.stringify(this.state.value);
-      // console.log('DCom', DComp);
-      // if(value !== preValue) {
-      //   console.log('the same button was not click and change the state', value, preValue);
-      //   return this.state.showComponent ? DComp : null;
-      // }
     NewForm = this.state.showComponent ? DComp : null;
-
 
     listActions = actions.map((action, i, Form) => {
       let value = Form[i];
