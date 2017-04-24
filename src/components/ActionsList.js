@@ -7,43 +7,78 @@ import React, { Component } from 'react';
 // import Interview from './Interview';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppForm from './forms/AppForm';
-
+import Comm from './forms/Comm';
+import DeniedForm from './forms/DeniedForm';
+import FormInt from './forms/FormInt';
+import FormOffer from './forms/FormOffer';
+import NetworkForm from './forms/NetworkForm';
 
 class ActionsList extends Component {
-  constructor(props) {
+  constructor(props, value) {
     super(props);
     this.state = {
-      showComponent: false
+      showComponent: false,
+      value: value
     };
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
-  handleClick() {
+  handleClick(value) {
+    console.log('this', value);
     this.setState(prevState => ({
-      showComponent: !prevState.showComponent
+      showComponent: !prevState.showComponent,
+      value: value
     }));
   }
-  render() {
-    const { data } = this.props
-    const aForm = <AppForm />;
-    const actions = ['Applied','Communications','Denied','Interview','Networking','Offer'];
-    let actionButton;
-    var newForm = this.state.showComponent ? <AppForm /> : null;
+  // changeValue(value, i) {
+  //   console.log("changeValue ", value, i);
+  //   this.setState({
+  //     value: value
+  //   })
+  // }
+  render(i) {
+    const { data } = this.props;
+    const { active } = this.props;
+    var aForm = <AppForm />;
+    var actions = ['Applied','Communications','Denied','Interview','Networking','Offer'];
+    var Forms = [
+      <AppForm data={data} value='Applied' />,
+      <Comm value='Communications' />,
+      <DeniedForm value='Denied' />,
+      <FormInt value='Interview' />,
+      <FormOffer value='Networking' />,
+      <NetworkForm value='Offer' />
+    ];
+    var listForms;
+    var listActions;
+    let NewForm;
+    let Form;
 
-    const listActions = actions.map((action, i) => {
-      console.log('list each one and I', action);
-      console.log('list I', i);
-    return (
-        <li key={i}>
-        <RaisedButton onClick={this.handleClick} label={action} />
-        </li>
-      )
+    listForms = Forms.map((Form) => {
+      // console.log("checking forms", Form.props.value);
+      return Form;
     })
+
+    listActions = actions.map((action, i, Form) => {
+
+      // console.log('index', this, Forms[i].props.value);
+      let value = Form[i];
+      console.log('form value', Form[i]);
+      let handleClick = this.handleClick.bind(this, value);
+      return (
+          <li key={i}>
+          <RaisedButton onClick={handleClick} label={action} value={value} />
+          </li>
+        )
+    })
+
+    NewForm = this.state.showComponent ? aForm : null;
+    // console.log('active ', Forms[1].props.value, Forms);
     return (
       <div>
         <ul>
           { listActions }
         </ul>
-        { newForm }
+        { NewForm }
       </div>
     )
   }
