@@ -6,6 +6,8 @@ import DeniedForm from './forms/DeniedForm';
 import FormInt from './forms/FormInt';
 import FormOffer from './forms/FormOffer';
 import NetworkForm from './forms/NetworkForm';
+import Card from 'material-ui/Card';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import _ from 'lodash';
 
 class ActionsList extends Component {
@@ -63,23 +65,27 @@ class ActionsList extends Component {
       let handleClick = this.handleClick.bind(this, value);
 
       return (
-          <li key={i}>
-          <RaisedButton onClick={handleClick} label={action} value={action} />
-          </li>
+          <Tab key={i} label={action} onClick={handleClick} value={action} />
         )
     })
 
     return (
       <div>
-        <ul>
-          { listActions }
-        </ul>
-        { NewForm }
+        <Card>
+          <Tabs>
+            { listActions }
+          </Tabs>
+        </Card>
+        <Card>
+          { NewForm }
+        </Card>
       </div>
     )
   }
 }
 export default ActionsList;
+// <li key={i}>
+// </li>
 // <Applied data={data}/>
 // <Communications data={data} />
 // <Interview data={data} />

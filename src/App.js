@@ -16,8 +16,10 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Paul Love Project 1</h2>
           </div>
-          <h3>Job Search Data</h3>
-          <ActionsList data={this.props.data} />
+          <div className="Main-body">
+            <h3>Job Search Data</h3>
+            <ActionsList data={this.props.data} />
+          </div>
         </div>
       </MuiThemeProvider>
     );
