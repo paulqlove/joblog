@@ -5,14 +5,14 @@ import Divider from 'material-ui/Divider';
 import DatePicker from 'material-ui/DatePicker';
 
 class NetworkForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     value: ''
+  //   };
+  //
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
   handleSubmit(e) {
     console.log("FORM SUBMITTED", this.state.value);
   }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import AppForm from './forms/AppForm';
 import Comm from './forms/Comm';
 import DeniedForm from './forms/DeniedForm';
@@ -9,6 +8,7 @@ import NetworkForm from './forms/NetworkForm';
 import Card from 'material-ui/Card';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 class ActionsList extends Component {
   constructor(props, value) {
@@ -68,7 +68,6 @@ class ActionsList extends Component {
           <Tab key={i} label={action} onClick={handleClick} value={action} />
         )
     })
-
     return (
       <div>
         <Card>
@@ -83,6 +82,11 @@ class ActionsList extends Component {
     )
   }
 }
+
+ActionsList.propTypes = {
+  data: PropTypes.array.isRequired
+}
+
 export default ActionsList;
 // <li key={i}>
 // </li>

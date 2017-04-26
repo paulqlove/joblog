@@ -5,14 +5,14 @@ import Divider from 'material-ui/Divider';
 import DatePicker from 'material-ui/DatePicker';
 
 class DeniedForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     value: ''
+  //   };
+  //
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  // }
   handleSubmit(e) {
     console.log("FORM SUBMITTED", this.state.value);
   }
@@ -23,7 +23,7 @@ class DeniedForm extends Component {
           <form onSubmit={this.handleSubmit}>
             <TextField hintText="Company" underlineShow={false}/>
             <Divider />
-            <DatePicker hintText="Date" mode="landscape" underlineShow={false}/>
+            <DatePicker hintText="Date" mode="landscape" underlineShow={false} />
         </form>
       </div>
     )
